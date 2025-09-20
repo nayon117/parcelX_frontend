@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import ClientMarquee from "./ClientMarquee";
 import Services from "./Services";
 
 const Home = () => {
@@ -6,7 +7,7 @@ const Home = () => {
     <div>
         <Banner />
         <Services />
-        
+        <ClientMarquee />
     </div>
   )
 }

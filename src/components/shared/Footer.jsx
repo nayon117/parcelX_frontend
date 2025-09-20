@@ -2,10 +2,10 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10">
-      <aside>
+    <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10 rounded-md">
+      <aside className="space-y-2">
        <Logo bg="black" />
-        <p className="font-bold">
+        <p className="font-bold py-2">
           parcelX Industries Ltd.
           <br />
           Providing reliable tech since 1992
