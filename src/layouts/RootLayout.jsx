@@ -4,7 +4,7 @@ import Footer from "../components/shared/Footer";
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="font-montserrat max-w-7xl mx-auto px-4 md:px-8 lg:px-12 bg-gray-200">
       <Navbar />
       <Outlet />
       <Footer/>

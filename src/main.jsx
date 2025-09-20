@@ -6,7 +6,7 @@ import { router } from "./router/router.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div className="font-montserrat max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+    <div >
       <RouterProvider router={router} />
     </div>
   </StrictMode>

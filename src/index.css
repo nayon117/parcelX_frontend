@@ -8,3 +8,32 @@
   font-weight: 400;
   font-style: normal;
 }
+body, html {
+  background-color: #e5e7eb; 
+}
+
+
+/* Custom colors */
+.text-color1 {
+  color: #caeb66;
+}
+
+.bg-color1 {
+  background-color: #caeb66;
+}
+
+.text-color2 {
+  color: #09383b; 
+}
+
+.bg-color2 {
+  background-color: #09383b;
+}
+.text-color3 {
+  color: #1e293b; 
+}
+
+.bg-color3 {
+  background-color: #1e293b;
+}
+

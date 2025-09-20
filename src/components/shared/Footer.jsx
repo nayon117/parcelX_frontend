@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10">
       <aside>
-       <Logo />
+       <Logo bg="black" />
         <p className="font-bold">
-          ACME Industries Ltd.
+          parcelX Industries Ltd.
           <br />
           Providing reliable tech since 1992
         </p>
