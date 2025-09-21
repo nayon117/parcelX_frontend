@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
@@ -11,14 +11,24 @@ const Login = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className="text-black mt-3">
+
     {/* header */}
-      <h1 className="text-2xl font-bold">Welcome Back</h1>
-      <p className="mb-4">Login with parcelX</p>
+      <h1 className="text-2xl font-bold">Create an Account</h1>
+      <p className="mb-4">Register with parcelX</p>
       <form onSubmit={handleSubmit(onSubmit)} >
         <fieldset className="fieldset">
+
+          {/* Name */}
+          <label className="label">Name</label>
+          <input {...register("name", { required: true })} type="text" className="input bg-white " placeholder="Name" />
+          {errors.name && <span className="text-red-500">Name is required</span>}
+
+         {/* email */}
           <label className="label">Email</label>
           <input {...register("email", { required: true })} type="email" className="input bg-white " placeholder="Email" />
           {errors.email && <span className="text-red-500">Email is required</span>}
+         
+         {/* password */}
           <label className="label">Password</label>
           <input
             {...register("password", { required: true, minLength:6 })}
@@ -27,17 +37,15 @@ const Login = () => {
             placeholder="Password"
           />
           {errors.password?.type === "minLength" && <span className="text-red-500">Password must be at least 6 characters</span>}
-          <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div>
+         
         </fieldset>
-          <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80">Login</button>
+          <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80">Register</button>
       </form>
-      {/* don't have an account? */}
+      {/* already have an account? */}
       <p className="mt-4">
-        Don't have an account? <Link to="/register" className="text-color2">Register</Link>
+        Already have an account? <Link to="/login" className="text-color2">Login</Link>
       </p>
     </div>
   );
 };
-export default Login;
+export default Register;
