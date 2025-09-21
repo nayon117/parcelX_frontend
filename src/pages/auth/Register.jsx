@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import SocialLogin from "./SocialLogin";
 
 const Register = () => {
   const {
@@ -20,9 +21,9 @@ const Register = () => {
         console.log(error);
       });
   };
-  
+
   return (
-    <div className="text-black mt-3">
+    <div className="text-black mt-3 card w-full max-w-sm shadow-2xl p-5">
       {/* header */}
       <h1 className="text-2xl font-bold">Create an Account</h1>
       <p className="mb-4">Register with parcelX</p>
@@ -69,14 +70,17 @@ const Register = () => {
         <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80">
           Register
         </button>
-      </form>
-      {/* already have an account? */}
-      <p className="mt-4">
+        {/* already have an account? */}
+      <p className="mt-4 text-center">
         Already have an account?{" "}
         <Link to="/login" className="text-color2">
           Login
         </Link>
       </p>
+      </form>
+      
+      {/* social login */}
+      <SocialLogin />
     </div>
   );
 };
