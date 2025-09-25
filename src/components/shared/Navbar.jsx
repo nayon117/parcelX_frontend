@@ -1,13 +1,20 @@
 import { Link, NavLink } from "react-router";
 import Logo from "./Logo";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const {user} = useAuth();
   const navItems = (
     <>
       <li><NavLink to="/">Home</NavLink></li>
-      <li> <NavLink to="/coverage">Coverage</NavLink></li>
-      <li> <NavLink to="/about">About</NavLink></li>
       <li> <NavLink to="/sendParcel">Send Parcel</NavLink></li>
+      <li> <NavLink to="/coverage">Coverage</NavLink></li>
+      {
+        user && <> 
+        <li> <NavLink to="/dashboard">Dashboard</NavLink></li> 
+        </> 
+      }
+      <li> <NavLink to="/about">About</NavLink></li>
     </>
   );
 

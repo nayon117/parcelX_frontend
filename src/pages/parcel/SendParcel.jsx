@@ -1,7 +1,16 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
+
+const generateTrackingId = () => {
+  const date = new Date();
+  const datePart = date.toISOString().split('T')[0].replace(/-/g, '');
+  const randomPart = Math.random().toString(36).substring(2, 7).toUpperCase();
+  return `PCL-${datePart}-${randomPart}`;
+};
 
 const SendParcel = () => {
   const {
@@ -12,14 +21,15 @@ const SendParcel = () => {
     formState: { errors },
   } = useForm();
 
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
   const type = watch("type", "document");
   const senderRegion = watch("senderRegion");
   const receiverRegion = watch("receiverRegion");
 
   const locationData = useLoaderData();
-
   const regions = [...new Set(locationData.map((item) => item.region))];
-
   const getDistrictsByRegion = (region) =>
     locationData.filter((item) => item.region === region).map((i) => i.district);
 
@@ -81,9 +91,26 @@ const SendParcel = () => {
       color: "#000",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log({ ...data, cost: total, creation_date: new Date() });
-        Swal.fire("Success", "Proceeding to payment...", "success");
-        reset();
+        const parcelData = {
+          ...data,
+          cost: total,
+          payment_status: "unpaid",
+          delivery_status: "not_collected",
+          created_by: user?.email,
+          creation_date: new Date().toISOString(),
+          tracking_id : generateTrackingId()
+        };
+        console.log(parcelData);
+        // TODO: Send parcelData to the server
+        axiosSecure.post("/parcels", parcelData)
+          .then((res) => {
+            if (res.data.insertedId) {
+              // TODO: here redirect to payment gateway
+
+              Swal.fire("Success", `Parcel created successfully!<br/>Tracking ID: <b>${parcelData.tracking_id}</b>`, "success");
+              reset();
+            }
+          })
       }
     });
   };
