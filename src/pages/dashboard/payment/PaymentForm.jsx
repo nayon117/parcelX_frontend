@@ -7,7 +7,8 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const PaymentForm = () => {
-  const [error, setError ] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const { id } = useParams();
@@ -15,15 +16,15 @@ const PaymentForm = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   
-  const {isPending, data:parcelInfo={}} = useQuery({
+  const { isPending, data: parcelInfo = {} } = useQuery({
     queryKey: ['parcels', id],
-    queryFn: async()=>{
+    queryFn: async () => {
       const res = await axiosSecure.get(`/parcels/${id}`);
       return res.data;
     }
-  })
+  });
 
-  if(isPending){
+  if (isPending) {
     return <div>Loading...</div>
   }
 
@@ -37,19 +38,24 @@ const PaymentForm = () => {
       return;
     }
 
+    setLoading(true);
+    setError('');
+
     const card = elements.getElement(CardElement);
     if (card == null) {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error: pmError, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
-    if (error) {
-      setError(error.message);
-      console.log("[error]", error);
+    if (pmError) {
+      setError(pmError.message);
+      setLoading(false);
+      console.log("[error]", pmError);
+      return;
     } else {
       setError('');
       console.log("[PaymentMethod]", paymentMethod);
@@ -59,9 +65,9 @@ const PaymentForm = () => {
     const res = await axiosSecure.post('/create-payment-intent', { 
       amount: amountInCents,
       id: id
-     });
+    });
 
-     const result = await stripe.confirmCardPayment(res.data.clientSecret, {
+    const result = await stripe.confirmCardPayment(res.data.clientSecret, {
       payment_method: {
         card: card,
         billing_details: {
@@ -73,6 +79,7 @@ const PaymentForm = () => {
 
     if (result.error) {
       setError(result.error.message);
+      setLoading(false);
     } else {
       setError('');
       if (result.paymentIntent.status === "succeeded") {
@@ -92,26 +99,23 @@ const PaymentForm = () => {
             text: `Your transaction ID: ${result.paymentIntent.id}`,
             confirmButtonText: "Go to My Parcels",
           });
-          // redirect to my parcels
           navigate('/dashboard/myParcels');
         }
       }
+      setLoading(false);
     }
- 
-    console.log('Payment Intent Response:', res.data);
 
+    console.log('Payment Intent Response:', res.data);
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen font-montserrat">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-        {/* Title */}
         <h2 className="text-2xl font-bold text-center mb-6 text-color2">
           Make a Payment
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Card Input */}
           <div className="p-4 border rounded-lg shadow-sm bg-gray-50">
             <CardElement
               options={{
@@ -128,18 +132,19 @@ const PaymentForm = () => {
             />
           </div>
 
-          {/* Pay Button */}
           <button
             type="submit"
-            disabled={!stripe}
+            disabled={!stripe || loading}
             className="w-full py-3 rounded-lg font-semibold transition-colors bg-color1 text-color2 hover:bg-color2 hover:text-white cursor-pointer"
           >
-            Pay {amount}$
+            {loading ? "Processing..." : `Pay ${amount}$`}
           </button>
+
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
         </form>
       </div>
     </div>
   );
 };
+
 export default PaymentForm;
