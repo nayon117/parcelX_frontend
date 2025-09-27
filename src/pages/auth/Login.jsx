@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const {
@@ -9,7 +10,20 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const {signIn} = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || "/";
+
+  const onSubmit = (data) => {
+    signIn(data.email, data.password)
+    .then(result=>{
+      console.log(result.user);
+      navigate(from, { replace: true });
+    })
+    .catch(err=>{console.log(err)});
+
+  };
   return (
     <div className="text-black mt-3 card w-full max-w-sm shadow-2xl p-5">
       {/* header */}
@@ -43,7 +57,7 @@ const Login = () => {
             <a className="link link-hover">Forgot password?</a>
           </div>
         </fieldset>
-        <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80">
+        <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80 cursor-pointer">
           Login
         </button>
         {/* don't have an account? */}

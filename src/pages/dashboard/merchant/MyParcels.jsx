@@ -4,10 +4,12 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
+import { useNavigate } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const { data: parcels = [], isLoading, refetch } = useQuery({
     queryKey: ["my-parcels", user?.email],
@@ -28,7 +30,7 @@ const MyParcels = () => {
     });
 
     if (result.isConfirmed) {
-      try {
+      try { 
         axiosSecure.delete(`/parcels/${id}`)
         .then(res=>{
           if(res.data.deletedCount>0){
@@ -43,8 +45,8 @@ const MyParcels = () => {
     }
   };
 
-  const handlePay = (parcel) => {
-    Swal.fire("Payment", `Proceed to pay ${parcel.cost}৳`, "info");
+  const handlePay = (id) => {
+    navigate(`/dashboard/payment/${id}`);
   };
 
   const handleView = (parcel) => {
@@ -79,7 +81,7 @@ const MyParcels = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
       <div className="overflow-x-auto">
-        <table className="table table-zebra table-compact w-full">
+        <table className="table  table-compact w-full">
           <thead>
             <tr className="text-black">
               <th>#</th>
@@ -118,7 +120,7 @@ const MyParcels = () => {
                   {parcel.payment_status === "unpaid" && (
                     <button
                       className="btn btn-sm btn-success mb-1"
-                      onClick={() => handlePay(parcel)}
+                      onClick={() => handlePay(parcel._id)}
                     >
                       💳 Pay
                     </button>

@@ -3,7 +3,14 @@ import Logo from "./Logo";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const {user} = useAuth();
+  const {user, logOut} = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+    .then(()=>{})
+    .catch(err=>console.log(err))
+  }
+
   const navItems = (
     <>
       <li><NavLink to="/">Home</NavLink></li>
@@ -56,9 +63,11 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn bg-color1 text-black">
+        {user ?
+        <button onClick={handleLogOut} className="btn bg-color1 text-black">Log Out</button>
+        :<Link to="/login" className="btn bg-color1 text-black">
           Login
-        </Link>
+        </Link>}
       </div>
     </div>
   );
