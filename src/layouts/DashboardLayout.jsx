@@ -60,6 +60,38 @@ const DashboardLayout = () => {
               <span>My Parcels</span>
             </NavLink>
           </li>
+          {/* paymentHistory */}
+          <li>
+            <NavLink
+              to="/dashboard/paymentHistory"
+              className="flex items-center space-x-2"
+            >
+              <span>💳</span>
+              <span>Payment History</span>
+            </NavLink>
+          </li>
+          {/* Track a package change parcel icon */}
+          <li>
+            <NavLink
+              to="/dashboard/track"
+              className="flex items-center space-x-2"
+            >
+              <span>📦</span>
+              <span>Track a Package</span>
+            </NavLink>
+          </li>
+
+          {/* update profile */}
+          <li>
+            <NavLink
+              to="/dashboard/updateProfile"
+              className="flex items-center space-x-2"
+            >
+              <span>👤</span>
+              <span>Update Profile</span>
+            </NavLink>
+          </li>
+
         </ul>
       </div>
     </div>

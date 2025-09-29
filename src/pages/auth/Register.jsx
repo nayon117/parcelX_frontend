@@ -67,7 +67,7 @@ const Register = () => {
             </span>
           )}
         </fieldset>
-        <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80">
+        <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80 cursor-pointer">
           Register
         </button>
         {/* already have an account? */}
