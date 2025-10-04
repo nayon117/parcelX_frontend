@@ -22,6 +22,7 @@ const Navbar = () => {
         </> 
       }
       <li> <NavLink to="/about">About</NavLink></li>
+      <li> <NavLink to="/rider">Be a Rider</NavLink></li>
     </>
   );
 
@@ -53,9 +54,9 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <span className="btn btn-ghost text-xl">
           <Logo bg="white" />
-        </a>
+        </span>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 text-lg font-semibold">

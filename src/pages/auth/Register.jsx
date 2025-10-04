@@ -1,7 +1,10 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "./SocialLogin";
+import axios from "axios";
+import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
   const {
@@ -10,17 +13,53 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  const [profilePic, setProfilePic] = useState('');
+  const axiosPublic = useAxios();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password)
-      .then((result) => {
+      .then(async (result) => {
         console.log(result.user);
+
+        // update user info in db
+        const userInfo = {
+          email: data.email,
+          role: 'user',
+          created_at: new Date().toISOString(),
+          last_login: new Date().toISOString(),
+        }
+        const userRes =await axiosPublic.post('/users', userInfo);
+        console.log(userRes.data);
+
+        // update user profile in firebase
+        updateUserProfile(data.name, profilePic)
+          .then(() => {
+            console.log("User profile updated");
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const handleImageUpload = async (event) => {
+    const imageFile = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_KEY}`,
+      formData
+    );
+    setProfilePic(res.data.data.url);
+  }
 
   return (
     <div className="text-black mt-3 card w-full max-w-sm shadow-2xl p-5">
@@ -40,6 +79,14 @@ const Register = () => {
           {errors.name && (
             <span className="text-red-500">Name is required</span>
           )}
+          {/* profile picture */}
+          <label className="label">Profile Picture</label>
+          <input
+            onChange={handleImageUpload}
+            type="file"
+            className="file-input bg-white "
+  
+          />
 
           {/* email */}
           <label className="label">Email</label>
