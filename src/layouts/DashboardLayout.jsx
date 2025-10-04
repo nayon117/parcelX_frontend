@@ -92,6 +92,26 @@ const DashboardLayout = () => {
             </NavLink>
           </li>
 
+          {/* riders link active & pending */}
+          <li>
+            <NavLink
+              to="/dashboard/active-riders"
+              className="flex items-center space-x-2"
+            >
+              <span>🟢</span>
+              <span>Active Riders</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/pending-riders"
+              className="flex items-center space-x-2"
+            >
+              <span>🟡</span>
+              <span>Pending Riders</span>
+            </NavLink>
+          </li>
+
         </ul>
       </div>
     </div>
