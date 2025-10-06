@@ -63,7 +63,7 @@ const Login = () => {
         {/* don't have an account? */}
         <p className="mt-4 text-center">
           Don't have an account?{" "}
-          <Link to="/register" className="text-color2">
+          <Link state={{from}} to="/register" className="text-color2">
             Register
           </Link>
         </p>

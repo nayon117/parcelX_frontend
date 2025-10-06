@@ -1,7 +1,15 @@
 import { NavLink, Outlet } from "react-router";
 import Logo from "../components/shared/Logo";
+import useUserRole from "../hooks/useUserRole";
+import Loader from "../components/shared/Loader";
 
 const DashboardLayout = () => {
+  const { role, roleLoading } = useUserRole();
+
+  if (roleLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -45,73 +53,101 @@ const DashboardLayout = () => {
           {/* Sidebar content here */}
           <Logo bg="black" />
           <hr className="my-4 border-gray-300" />
-          <li>
-            <NavLink to="/" className="flex items-center space-x-2">
-              <span>🏠</span>
-              <span>Home</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/myParcels"
-              className="flex items-center space-x-2"
-            >
-              <span>📦</span>
-              <span>My Parcels</span>
-            </NavLink>
-          </li>
-          {/* paymentHistory */}
-          <li>
-            <NavLink
-              to="/dashboard/paymentHistory"
-              className="flex items-center space-x-2"
-            >
-              <span>💳</span>
-              <span>Payment History</span>
-            </NavLink>
-          </li>
-          {/* Track a package change parcel icon */}
-          <li>
-            <NavLink
-              to="/dashboard/track"
-              className="flex items-center space-x-2"
-            >
-              <span>📦</span>
-              <span>Track a Package</span>
-            </NavLink>
-          </li>
+          {!roleLoading && (role === "user" || role === "rider") && (
+            <>
+              <li>
+                <NavLink to="/" className="flex items-center space-x-2">
+                  <span>🏠</span>
+                  <span>Home</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myParcels"
+                  className="flex items-center space-x-2"
+                >
+                  <span>📦</span>
+                  <span>My Parcels</span>
+                </NavLink>
+              </li>
+              {/* paymentHistory */}
+              <li>
+                <NavLink
+                  to="/dashboard/paymentHistory"
+                  className="flex items-center space-x-2"
+                >
+                  <span>💳</span>
+                  <span>Payment History</span>
+                </NavLink>
+              </li>
+              {/* Track a package change parcel icon */}
+              <li>
+                <NavLink
+                  to="/dashboard/track"
+                  className="flex items-center space-x-2"
+                >
+                  <span>📦</span>
+                  <span>Track a Package</span>
+                </NavLink>
+              </li>
 
-          {/* update profile */}
-          <li>
-            <NavLink
-              to="/dashboard/updateProfile"
-              className="flex items-center space-x-2"
-            >
-              <span>👤</span>
-              <span>Update Profile</span>
-            </NavLink>
-          </li>
+              {/* update profile */}
+              <li>
+                <NavLink
+                  to="/dashboard/updateProfile"
+                  className="flex items-center space-x-2"
+                >
+                  <span>👤</span>
+                  <span>Update Profile</span>
+                </NavLink>
+              </li>
+            </>
+          )}
 
-          {/* riders link active & pending */}
-          <li>
-            <NavLink
-              to="/dashboard/active-riders"
-              className="flex items-center space-x-2"
-            >
-              <span>🟢</span>
-              <span>Active Riders</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/pending-riders"
-              className="flex items-center space-x-2"
-            >
-              <span>🟡</span>
-              <span>Pending Riders</span>
-            </NavLink>
-          </li>
+          {/* admin routes */}
+          {!roleLoading && role === "admin" && (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/assign-rider"
+                  className="flex items-center space-x-2"
+                >
+                  <span>🚚</span>
+                  <span>Assign Rider</span>
+                </NavLink>
+              </li>
 
+              <li>
+                <NavLink
+                  to="/dashboard/active-riders"
+                  className="flex items-center space-x-2"
+                >
+                  <span>🟢</span>
+                  <span>Active Riders</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/pending-riders"
+                  className="flex items-center space-x-2"
+                >
+                  <span>🟡</span>
+                  <span>Pending Riders</span>
+                </NavLink>
+              </li>
+
+              {/* make admin  */}
+              <li>
+                <NavLink
+                  to="/dashboard/makeAdmin"
+                  className="flex items-center space-x-2"
+                >
+                  <span>👮‍♂️</span>
+                  <span>Make Admin</span>
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

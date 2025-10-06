@@ -15,6 +15,10 @@ import TrackParcel from "../pages/dashboard/merchant/TrackParcel";
 import Rider from "../pages/dashboard/rider/Rider";
 import PendingRiders from "../pages/dashboard/admin/PendingRiders";
 import ActiveRiders from "../pages/dashboard/admin/ActiveRiders";
+import MakeAdmin from "../pages/dashboard/admin/MakeAdmin";
+import Forbidden from "../components/shared/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
+import AssignRider from "../pages/dashboard/admin/AssignRider";
 
 
 export const router = createBrowserRouter([
@@ -30,6 +34,10 @@ export const router = createBrowserRouter([
         path:"coverage",
         Component:Coverage,
         loader:()=>fetch('./serviceCenter.json')
+      },
+      {
+        path: "forbidden",
+        Component: Forbidden
       },
       {
         path:"sendParcel",
@@ -78,12 +86,20 @@ export const router = createBrowserRouter([
         Component: TrackParcel
       },
       {
+        path:'assign-rider',
+        element: <AdminRoute><AssignRider/></AdminRoute>
+      },
+      {
         path:'pending-riders',
-        Component:PendingRiders
+        element: <AdminRoute><PendingRiders/></AdminRoute>
       },
       {
         path:'active-riders',
-        Component: ActiveRiders
+        element: <AdminRoute><ActiveRiders/></AdminRoute>
+      },
+      {
+        path:'makeAdmin',
+        element:<AdminRoute><MakeAdmin/></AdminRoute>
       }
     ]
   }
