@@ -59,8 +59,8 @@ const PendingRiders = () => {
   if (result.isConfirmed) {
     try {
       await axiosSecure.patch(`/riders/${rider._id}/status`, { 
-        status: action === "approve" ? "approved" : "rejected"
-
+        status: action === "approve" ? "approved" : "rejected",
+        email: rider.email
        });
 
       Swal.fire(

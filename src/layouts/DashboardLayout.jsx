@@ -112,6 +112,17 @@ const DashboardLayout = () => {
             </NavLink>
           </li>
 
+          {/* make admin  */}
+          <li>
+            <NavLink
+              to="/dashboard/makeAdmin"
+              className="flex items-center space-x-2"
+            >
+              <span>👮‍♂️</span>
+              <span>Make Admin</span>
+            </NavLink>
+          </li>
+
         </ul>
       </div>
     </div>

@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 import { useNavigate } from "react-router";
+import Loader from "../../../components/shared/Loader";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -65,7 +66,7 @@ const MyParcels = () => {
     });
   };
 
-  if (isLoading) return <div>Loading parcels...</div>;
+  if (isLoading) return <Loader/>;
 
    if (parcels.length === 0) {
     return (

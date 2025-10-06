@@ -12,3 +12,4 @@ const Logo = ({bg="white"}) => {
   )
 }
 export default Logo;
+
