@@ -104,9 +104,19 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {/* riders link active & pending */}
+          {/* admin routes */}
           {!roleLoading && role === "admin" && (
             <>
+              <li>
+                <NavLink
+                  to="/dashboard/assign-rider"
+                  className="flex items-center space-x-2"
+                >
+                  <span>🚚</span>
+                  <span>Assign Rider</span>
+                </NavLink>
+              </li>
+
               <li>
                 <NavLink
                   to="/dashboard/active-riders"

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { FaCheck, FaTimes, FaEye } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loader from "../../../components/shared/Loader";
 
 const PendingRiders = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,7 +16,7 @@ const PendingRiders = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center text-color2">Loading...</p>;
+  if (isLoading) return <Loader />;
   if (isError) return <p className="text-center text-red-500">Error loading riders</p>;
 
   // View modal
