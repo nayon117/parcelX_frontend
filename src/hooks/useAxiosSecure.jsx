@@ -1,5 +1,6 @@
 import axios from "axios";
 import useAuth from "./useAuth";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
@@ -7,40 +8,47 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const { user , logOut} = useAuth();
+  const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
-  axiosSecure.interceptors.request.use(
-    (config) => {
-      config.headers.Authorization = `Bearer ${user?.accessToken}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  useEffect(() => {
+    // Request interceptor (runs once)
+    const requestInterceptor = axiosSecure.interceptors.request.use(
+      (config) => {
+        if (user?.accessToken) {
+          config.headers.Authorization = `Bearer ${user.accessToken}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
 
-  axiosSecure.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {  
-        console.log("Unauthorized or Forbidden response - logging out user");
+    // Response interceptor (runs once)
+    const responseInterceptor = axiosSecure.interceptors.response.use(
+      (response) => response,
+      (error) => {
         const status = error.response?.status;
-        if(status === 403) {
-            navigate("/forbidden");
+
+        if (status === 403) {
+          navigate("/forbidden");
         } else if (status === 401) {
-            logOut()
-            .then(()=>{
-                navigate("/login");
-            })
-            .catch((err)=>console.log(err));
+          logOut()
+            .then(() => navigate("/login"))
+            .catch((err) => console.log(err));
         }
 
-      return Promise.reject(error);
-    }
-  );
+        return Promise.reject(error);
+      }
+    );
+
+    // Cleanup old interceptors (important)
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+      axiosSecure.interceptors.response.eject(responseInterceptor);
+    };
+  }, [user, logOut, navigate]);
 
   return axiosSecure;
 };
+
 export default useAxiosSecure;

@@ -53,8 +53,7 @@ const DashboardLayout = () => {
           {/* Sidebar content here */}
           <Logo bg="black" />
           <hr className="my-4 border-gray-300" />
-          {!roleLoading && (role === "user" || role === "rider") && (
-            <>
+    
               <li>
                 <NavLink to="/" className="flex items-center space-x-2">
                   <span>🏠</span>
@@ -101,8 +100,44 @@ const DashboardLayout = () => {
                   <span>Update Profile</span>
                 </NavLink>
               </li>
-            </>
-          )}
+
+         {/* rider routes */}
+         {
+            !roleLoading && role === "rider" && (
+                <>
+                <li>
+                  <NavLink
+                    to="/dashboard/pending-deliveries"
+                    className="flex items-center space-x-2"
+                  >
+                    <span>📦</span>
+                    <span>Pending Deliveries</span>
+                  </NavLink>
+                </li>
+
+                {/* completed deliveries */}
+                <li>
+                  <NavLink
+                    to="/dashboard/completed-deliveries"
+                    className="flex items-center space-x-2"
+                  >
+                    <span>✅</span>
+                    <span>Completed Deliveries</span>
+                  </NavLink>
+                </li>
+                {/* my earnings */}
+                <li>
+                  <NavLink
+                    to="/dashboard/my-earnings"
+                    className="flex items-center space-x-2"
+                  >
+                    <span>💰</span>
+                    <span>My Earnings</span>
+                  </NavLink>
+                </li>
+              </>
+            )
+         }
 
           {/* admin routes */}
           {!roleLoading && role === "admin" && (
