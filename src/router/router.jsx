@@ -19,6 +19,10 @@ import MakeAdmin from "../pages/dashboard/admin/MakeAdmin";
 import Forbidden from "../components/shared/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import AssignRider from "../pages/dashboard/admin/AssignRider";
+import RiderRoute from "../routes/RiderRoute";
+import PendingDeliveries from "../pages/dashboard/rider/PendingDeliveries";
+import CompletedDeliveries from "../pages/dashboard/rider/CompletedDeliveries";
+import MyEarnings from "../pages/dashboard/rider/MyEarnings";
 
 
 export const router = createBrowserRouter([
@@ -84,6 +88,18 @@ export const router = createBrowserRouter([
       {
         path:"track",
         Component: TrackParcel
+      },
+      {
+        path:'pending-deliveries',
+        element: <RiderRoute><PendingDeliveries/></RiderRoute>
+      },
+      {
+        path:'completed-deliveries',
+        element: <RiderRoute><CompletedDeliveries/></RiderRoute>
+      },
+      {
+        path:'my-earnings',
+        element: <RiderRoute><MyEarnings/></RiderRoute>
       },
       {
         path:'assign-rider',

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -23,6 +23,7 @@ const SendParcel = () => {
 
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const type = watch("type", "document");
   const senderRegion = watch("senderRegion");
@@ -100,15 +101,12 @@ const SendParcel = () => {
           creation_date: new Date().toISOString(),
           tracking_id : generateTrackingId()
         };
-        console.log(parcelData);
-        // TODO: Send parcelData to the server
         axiosSecure.post("/parcels", parcelData)
           .then((res) => {
             if (res.data.insertedId) {
-              // TODO: here redirect to payment gateway
-
               Swal.fire("Success", `Parcel created successfully!<br/>Tracking ID: <b>${parcelData.tracking_id}</b>`, "success");
               reset();
+              navigate("/dashboard/myParcels");
             }
           })
       }
