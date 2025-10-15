@@ -11,7 +11,6 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyParcels from "../pages/dashboard/merchant/MyParcels";
 import Payment from "../pages/dashboard/payment/Payment";
 import PaymentHistory from "../pages/dashboard/payment/PaymentHistory";
-import TrackParcel from "../pages/dashboard/merchant/TrackParcel";
 import Rider from "../pages/dashboard/rider/Rider";
 import PendingRiders from "../pages/dashboard/admin/PendingRiders";
 import ActiveRiders from "../pages/dashboard/admin/ActiveRiders";
@@ -24,6 +23,11 @@ import PendingDeliveries from "../pages/dashboard/rider/PendingDeliveries";
 import CompletedDeliveries from "../pages/dashboard/rider/CompletedDeliveries";
 import MyEarnings from "../pages/dashboard/rider/MyEarnings";
 import DashboardHome from "../pages/dashboard/DashboardHome";
+import UpdateProfile from "../pages/dashboard/UpdateProfile";
+import UserDashboard from "../pages/dashboard/UserDashboard";
+import RiderDashboard from "../pages/dashboard/RiderDashboard";
+import AdminDashboard from "../pages/dashboard/AdminDashboard";
+import About from "../pages/about/About";
 
 
 export const router = createBrowserRouter([
@@ -53,6 +57,10 @@ export const router = createBrowserRouter([
         path:"rider",
         element:<PrivateRoute><Rider/></PrivateRoute>,
         loader:()=>fetch('./serviceCenter.json')
+      },
+      {
+        path:"about",
+        Component: About
       }
     ]
   },
@@ -79,6 +87,22 @@ export const router = createBrowserRouter([
         Component:DashboardHome
       },
       {
+        path:"userDashboard",
+        Component: UserDashboard
+      },
+      {
+        path:"riderDashboard",
+        Component: RiderDashboard
+      },
+      {
+        path:"adminDashboard",
+        Component:AdminDashboard
+      },
+      {
+        path:"updateProfile",
+        Component:UpdateProfile
+      },
+      {
         path:"myParcels",
         Component:MyParcels
       },
@@ -89,10 +113,6 @@ export const router = createBrowserRouter([
       {
         path:"paymentHistory",
         Component: PaymentHistory
-      },
-      {
-        path:"track",
-        Component: TrackParcel
       },
       {
         path:'pending-deliveries',
