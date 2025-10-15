@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-  baseURL: "https://parcel-x-server.vercel.app",
+//   baseURL: "https://parcel-x-server.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {
