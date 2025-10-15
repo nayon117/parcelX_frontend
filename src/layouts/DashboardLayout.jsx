@@ -54,12 +54,32 @@ const DashboardLayout = () => {
           <Logo bg="black" />
           <hr className="my-4 border-gray-300" />
     
-              <li>
-                <NavLink to="/" className="flex items-center space-x-2">
+             {
+            !roleLoading && role === "user" &&  <li>
+                <NavLink to="/dashboard/userDashboard" className="flex items-center space-x-2">
                   <span>🏠</span>
                   <span>Home</span>
                 </NavLink>
               </li>
+             }
+             {
+            !roleLoading && role === "rider" &&  <li>
+                <NavLink to="/dashboard/riderDashboard" className="flex items-center space-x-2">
+                  <span>🏠</span>
+                    <span>Home</span>
+                </NavLink>
+              </li>
+             }
+
+             {
+            !roleLoading && role === "admin" &&  <li>
+                <NavLink to="/dashboard/adminDashboard" className="flex items-center space-x-2">
+                  <span>🏠</span>
+                  <span>Home</span>
+                </NavLink>
+              </li>
+             }
+
               <li>
                 <NavLink
                   to="/dashboard/myParcels"
@@ -77,16 +97,6 @@ const DashboardLayout = () => {
                 >
                   <span>💳</span>
                   <span>Payment History</span>
-                </NavLink>
-              </li>
-              {/* Track a package change parcel icon */}
-              <li>
-                <NavLink
-                  to="/dashboard/track"
-                  className="flex items-center space-x-2"
-                >
-                  <span>📦</span>
-                  <span>Track a Package</span>
                 </NavLink>
               </li>
 
