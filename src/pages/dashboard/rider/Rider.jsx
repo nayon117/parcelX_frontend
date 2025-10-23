@@ -37,7 +37,7 @@ const Rider = () => {
 
     try {
       const res = await axiosSecure.post("/riders", riderData);
-      if (res.data.insertedId) {
+      if (res.data) {
         Swal.fire("✅ Success", "Your rider application has been submitted!", "success");
         reset();
       }

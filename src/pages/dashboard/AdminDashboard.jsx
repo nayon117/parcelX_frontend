@@ -32,7 +32,7 @@ export default function AdminDashboard() {
   // Fetch payments
  const { data: payments = [] } = useQuery({
   queryKey: ["payments"],
-  queryFn: async () => (await axiosSecure.get("/admin/payments")).data,
+  queryFn: async () => (await axiosSecure.get("/payments/admin")).data,
 });
 
   // Compute stats

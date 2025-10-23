@@ -103,7 +103,8 @@ const SendParcel = () => {
         };
         axiosSecure.post("/parcels", parcelData)
           .then((res) => {
-            if (res.data.insertedId) {
+            console.log(res)
+            if (res.data.success) {
               Swal.fire("Success", `Parcel created successfully!<br/>Tracking ID: <b>${parcelData.tracking_id}</b>`, "success");
               reset();
               navigate("/dashboard/myParcels");

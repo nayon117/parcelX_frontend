@@ -24,7 +24,7 @@ const Mercent = () => {
             <button className="bg-color1 text-color3 px-4 py-1.5 rounded-full font-semibold hover:scale-105 transition-transform">
               Become a Merchant
             </button>
-            <button className="border-[#caeb66] border-2 rounded-full text-color1 px-4 py-1.5 font-semibold">
+            <button className="border-[#a4e5ff] border-2 rounded-full text-color1 px-4 py-1.5 font-semibold">
               Earn with ParcelX
             </button>
           </div>

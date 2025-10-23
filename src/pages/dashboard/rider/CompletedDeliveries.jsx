@@ -14,7 +14,7 @@ const CompletedDeliveries = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/rider/completed-parcels?email=${user.email}`
+        `/parcels/rider/completed-parcels?email=${user.email}`
       );
       return res.data || []; // expect API returns array of parcels
     },
