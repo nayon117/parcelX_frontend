@@ -13,7 +13,7 @@ const PendingDeliveries = () => {
   const { data: parcels = [], isLoading } = useQuery({
     queryKey: ["riderParcels", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/rider/parcels?email=${user.email}`);
+      const res = await axiosSecure.get(`/parcels/rider?email=${user.email}`);
       return res.data;
     },
   });

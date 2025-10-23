@@ -34,7 +34,7 @@ const MyParcels = () => {
       try { 
         axiosSecure.delete(`/parcels/${id}`)
         .then(res=>{
-          if(res.data.deletedCount>0){
+          if(res.data){
             Swal.fire("Deleted!", "Parcel has been deleted.", "success");
             refetch();
           }

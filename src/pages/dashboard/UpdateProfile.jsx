@@ -56,7 +56,7 @@ const UpdateProfile = () => {
     try {
       const res = await axiosSecure.patch(`/users/${mongoId}/profile`, formData);
 
-      if (res.data.success) {
+      if (res.data) {
         Swal.fire({
           icon: "success",
           title: "Profile Updated",

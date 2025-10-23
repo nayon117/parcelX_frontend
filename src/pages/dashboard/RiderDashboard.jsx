@@ -15,7 +15,7 @@ const RiderDashboard = () => {
   const { data: activeParcels = [] } = useQuery({
     queryKey: ["riderActiveParcels", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/rider/parcels?email=${user?.email}`);
+      const res = await axiosSecure.get(`/parcels/rider?email=${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,
@@ -25,7 +25,7 @@ const RiderDashboard = () => {
   const { data: completedParcels = [] } = useQuery({
     queryKey: ["riderCompletedParcels", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/rider/completed-parcels?email=${user?.email}`);
+      const res = await axiosSecure.get(`/parcels/rider/completed-parcels?email=${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,

@@ -62,7 +62,7 @@ const PaymentForm = () => {
     }
 
     // create payment intent
-    const res = await axiosSecure.post('/create-payment-intent', { 
+    const res = await axiosSecure.post('/payments/create-payment-intent', { 
       amount: amountInCents,
       id: id
     });
@@ -92,7 +92,7 @@ const PaymentForm = () => {
           paymentMethod: result.paymentIntent.payment_method_types[0],
         }
         const paymentRes = await axiosSecure.post('/payments', paymentData);
-        if(paymentRes.data.insertedId){
+        if(paymentRes.data){
           Swal.fire({
             icon: 'success',
             title: 'Payment Successful',

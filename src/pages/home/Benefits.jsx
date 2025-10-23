@@ -1,6 +1,7 @@
 import illustration1 from "../../assets/safe-delivery.png";
 import illustration2 from "../../assets/live-tracking.png";
-import illustration3 from "../../assets/big-deliveryman.png";
+// import illustration3 from "../../assets/big-deliveryman.png";
+import illustration3 from "../../assets/customer-top.png";
 
 const benefits = [
   {

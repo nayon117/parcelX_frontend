@@ -54,7 +54,7 @@ const Services = () => {
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <div key={index} className="card shadow-lg p-6 hover:shadow-xl transition bg-white hover:bg-[#caeb66]">
+            <div key={index} className="card shadow-lg p-6 hover:shadow-xl transition bg-white hover:bg-[#a4e5ff]">
               <div className="flex flex-col items-center text-center space-y-4">
                 {service.icon}
                 <h3 className="text-xl font-semibold text-color3">{service.title}</h3>
