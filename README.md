@@ -1,12 +1,49 @@
-# React + Vite
+# 📦 ParcelX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**ParcelX** — A smart door-to-door parcel delivery system built for speed, clarity, and control.  
+Built with **React**, **Tailwind**, **DaisyUI**, **Firebase**, **Express**, and **MongoDB**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 👤 User
+- Book parcels with pickup & delivery info  
+- Pay online and get tracking number  
+- Track parcels live  
+- Manage & review deliveries  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🧑‍💼 Admin
+- Manage users, riders & parcels  
+- Assign riders for pickup/delivery  
+- Monitor earnings & delivery flow  
+
+### 🚚 Rider
+- View assigned pickups/deliveries  
+- Confirm parcel status updates  
+- Track personal earnings  
+
+---
+
+## ⚙️ Tech Stack
+**Frontend:** React, Tailwind, DaisyUI, Firebase Auth, Recharts  
+**Backend:** Express, MongoDB, Mongoose, Stripe (payment)
+
+---
+
+## 🧩 Setup
+
+```bash
+# Clone
+git clone https://github.com/your-username/parcelx.git
+cd parcelx
+
+# Backend
+cd server
+npm install
+npm run dev
+
+# Frontend
+cd client
+npm install
+npm run dev
