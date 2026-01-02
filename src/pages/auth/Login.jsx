@@ -57,7 +57,7 @@ const Login = () => {
             <a className="link link-hover">Forgot password?</a>
           </div>
         </fieldset>
-        <button className="bg-color1 px-4 py-2 mt-4 font-semibold w-80 cursor-pointer">
+        <button className="bg-color1 text-white px-4 py-2 mt-4 font-semibold w-80 cursor-pointer">
           Login
         </button>
         {/* don't have an account? */}

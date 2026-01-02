@@ -82,7 +82,7 @@ const PendingRiders = () => {
 
   return (
     <div className="p-4 my-12">
-    <h2 className="text-2xl font-bold mb-4 text-color2">Pending Riders</h2>
+    <h2 className="text-2xl font-bold mb-4 text-color3">Pending Riders</h2>
 
     {riders.length === 0 ? (
       <div className="flex flex-col items-center justify-center mt-20 p-10   rounded-lg text-center">
@@ -93,7 +93,7 @@ const PendingRiders = () => {
     ) : (
       <div className="overflow-x-auto">
         <table className="w-full border-collapse rounded-lg overflow-hidden shadow">
-          <thead className="bg-color2 text-white">
+          <thead className="bg-color3 text-white">
             <tr>
               <th className="p-3 text-left">Name</th>
               <th className="p-3 text-left">Email</th>
@@ -114,7 +114,7 @@ const PendingRiders = () => {
                 <td className="p-3 flex gap-3 justify-center">
                   <button
                     onClick={() => handleView(rider)}
-                    className="p-2 rounded bg-color1 text-color2 hover:opacity-90 cursor-pointer"
+                    className="p-2 rounded bg-white text-color3 hover:opacity-90 cursor-pointer"
                     title="View"
                   >
                     <FaEye />

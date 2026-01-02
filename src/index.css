@@ -10,16 +10,19 @@
   font-style: normal;
 }
 body, html {
-  background-color: #e5e7eb; 
+  background-color: #f8f8f9; 
 }
   
-/* Primary -  */
-.text-color1 { color: #a4e5ff; }
-.bg-color1 { background-color: #a4e5ff; }
 
-.text-color2 { color: #1b2c40; }
-.bg-color2 { background-color: #1b2c40; }
 
-/* Accent - */
-.text-color3 { color: #1e293b; }
-.bg-color3 { background-color: #1e293b; }
+/* Primary – highlight / CTA */
+.text-color1 { color: #f52027; }   /* red-900 */
+.bg-color1   { background-color: #f52027; }
+
+/* Secondary – accent / subtle highlights */
+.text-color2 { color: #c1272d; }  /* muted warm red */
+.bg-color2   { background-color: #c1272d; }
+
+/* Accent / Neutral – text, balance */
+.text-color3 { color: #1f2937; }   /* slate-800 */
+.bg-color3   { background-color: #1f2937; }

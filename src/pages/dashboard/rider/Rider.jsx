@@ -177,7 +177,7 @@ const Rider = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn  w-full">
+        <button type="submit" className="btn bg-color1 text-white border-none w-full">
           Submit Application
         </button>
       </form>

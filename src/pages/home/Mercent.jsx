@@ -1,34 +1,34 @@
-import location from '../../assets/location-merchant.png';
+import { Link } from "react-router";
 
 const Mercent = () => {
   return (
-    <section className="hero bg-color2 py-16 px-4 md:px-12 mb-12 rounded-lg">
-      <div className="hero-content flex flex-col lg:flex-row-reverse items-center gap-8">
-        <img
-          src={location}
-          className="w-full max-w-sm rounded-lg shadow-2xl"
-        />
-
-        <div className="text-center lg:text-left flex-1">
-          <h1 className="text-4xl md:text-5xl font-bold  mb-6">
-            Join ParcelX as a Merchant
+    <section className="py-16 px-4 md:px-12 mb-12 rounded-lg bg-red-50/50">
+      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12 text-center lg:text-left">
+        
+        <div className="flex-1">
+          <h1 className="text-4xl md:text-5xl font-bold text-color3 mb-6">
+            Join ParcelX
           </h1>
-          <p className="text-gray-200 text-base md:text-lg mb-6">
-            Expand your business with our reliable delivery network. Book
-            parcels, track shipments in real-time, and reach customers across
-            all 64 districts of Bangladesh with ease.
+          <p className="text-color3 text-base md:text-lg mb-8">
+            Expand your business with our reliable delivery network. Book parcels, track shipments in real-time, and reach customers across all 64 districts of Bangladesh with ease.
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button className="bg-color1 text-color3 px-4 py-1.5 rounded-full font-semibold hover:scale-105 transition-transform">
-              Become a Merchant
-            </button>
-            <button className="border-[#a4e5ff] border-2 rounded-full text-color1 px-4 py-1.5 font-semibold">
-              Earn with ParcelX
-            </button>
+          <div className="flex justify-center lg:justify-start gap-4">
+            <Link to="/rider">
+              <button className="bg-color1 text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform cursor-pointer">
+                Earn with ParcelX
+              </button>
+            </Link>
           </div>
         </div>
+
+        {/* Illustration placeholder */}
+        <div className="flex-1">
+          <div className="w-full h-64 md:h-80 lg:h-96 bg-red-50/80 rounded-xl flex items-center justify-center shadow-md">
+            <span className="text-6xl text-color1">🚚</span>
+          </div>
+        </div>
+
       </div>
     </section>
   );

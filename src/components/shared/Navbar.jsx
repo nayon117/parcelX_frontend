@@ -27,7 +27,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-white shadow-sm mt-6 text-color3 rounded-md">
+    <div className="navbar bg-white shadow-sm text-color3 rounded-md  px-4 md:px-8 lg:px-12 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,7 +54,7 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <span className="  text-xl">
+        <span className="text-xl">
           <Logo bg="white" />
         </span>
       </div>
@@ -65,8 +65,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ?
-        <button onClick={handleLogOut} className="btn bg-color1 text-black">Log Out</button>
-        :<Link to="/login" className="btn bg-color1 text-black">
+        <button onClick={handleLogOut} className="btn bg-color1 outline-none border-none">Log Out</button>
+        :<Link to="/login" className="btn bg-color1 outline-none border-none">
           Login
         </Link>}
       </div>

@@ -93,7 +93,7 @@ const MakeAdmin = () => {
                   <td>
                     <span
                       className={`badge ${
-                        u.role === "admin" ? "badge-success" : "badge-ghost"
+                        u.role === "admin" ? "badge-success text-white" : "badge-ghost"
                       }`}
                     >
                       {u.role || "user"}
@@ -103,7 +103,7 @@ const MakeAdmin = () => {
                     <button
                       onClick={() => handleRoleChange(u._id, u.role || "user")}
                       className={`btn btn-sm text-black ${
-                        u.role === "admin" ? "btn-error" : "bg-color2 text-white"
+                        u.role === "admin" ? "bg-color1 text-white border-none" : "bg-color3 text-white"
                       }`}
                     >
                       {u.role === "admin" ? (

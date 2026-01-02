@@ -52,7 +52,7 @@ const ActiveRiders = () => {
 
   return (
     <div className="p-4 my-12">
-      <h2 className="text-2xl font-bold mb-4 text-color2">Active Riders</h2>
+      <h2 className="text-2xl font-bold mb-4 text-color3">Active Riders</h2>
 
       <input
         type="text"
@@ -71,7 +71,7 @@ const ActiveRiders = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse rounded-lg overflow-hidden shadow">
-            <thead className="bg-color2 text-white">
+            <thead className="bg-color3 text-white">
               <tr>
                 <th className="p-3 text-left">Name</th>
                 <th className="p-3 text-left">Email</th>

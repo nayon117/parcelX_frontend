@@ -145,7 +145,7 @@ const SendParcel = () => {
                   type="radio"
                   value="non-document"
                   {...register("type", { required: "Parcel type is required" })}
-                  className="radio radio-success"
+                  className="radio radio-warning"
                 />
                 <span>Non-Document</span>
               </label>
@@ -334,7 +334,7 @@ const SendParcel = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn text-white w-full">
+        <button type="submit" className="btn text-white bg-color1 border-none w-full">
           Submit
         </button>
       </form>

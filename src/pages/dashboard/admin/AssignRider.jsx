@@ -101,7 +101,7 @@ const AssignRider = () => {
                   <td>
                     <button
                       onClick={() => openAssignModal(parcel)}
-                      className="btn btn-sm bg-color2 "
+                      className="btn btn-sm bg-color1 border-none "
                     >
                       <FaMotorcycle className="mr-2" />
                       Assign

@@ -49,7 +49,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-color2 text-base-content min-h-full w-80 p-4 text-lg font-semibold space-y-2">
+        <ul className="menu bg-white text-black min-h-full w-80 p-4 text-lg font-semibold space-y-2 shadow-2xl">
           {/* Sidebar content here */}
           <Logo bg="black" />
           <hr className="my-4 border-gray-300" />
